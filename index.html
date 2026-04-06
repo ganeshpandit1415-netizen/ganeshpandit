@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ganesh Pandit | IAM Business Analyst</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0a0f1e;
+    --deep: #0d1530;
+    --card: #111827;
+    --blue: #2563eb;
+    --cyan: #06b6d4;
+    --accent: #38bdf8;
+    --gold: #f59e0b;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+    --border: rgba(99,179,237,0.15);
+    --glow: rgba(37,99,235,0.4);
+  }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--navy); color: var(--text); overflow-x: hidden; cursor: none; }
+  .cursor { width: 12px; height: 12px; background: var(--cyan); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; mix-blend-mode: screen; }
+  .cursor-ring { width: 36px; height: 36px; border: 1.5px solid var(--cyan); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9998; opacity: 0.5; }
+  body::before { content: ''; position: fixed; inset: 0; background-image: linear-gradient(rgba(37,99,235,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(37,99,235,0.04) 1px, transparent 1px); background-size: 60px 60px; pointer-events: none; z-index: 0; }
+  .orb { position: fixed; border-radius: 50%; filter: blur(120px); pointer-events: none; z-index: 0; animation: orb-float 8s ease-in-out infinite; }
+  .orb-1 { width: 500px; height: 500px; background: rgba(37,99,235,0.12); top: -150px; right: -100px; }
+  .orb-2 { width: 400px; height: 400px; background: rgba(6,182,212,0.08); bottom: 100px; left: -100px; animation-delay: -4s; }
+  .orb-3 { width: 300px; height: 300px; background: rgba(245,158,11,0.06); top: 40%; left: 50%; animation-delay: -2s; }
+  @keyframes orb-float { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-30px) scale(1.05); } }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 20px 60px; display: flex; justify-content: space-between; align-items: center; background: rgba(10,15,30,0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); animation: slideDown 0.8s ease forwards; }
+  @keyframes slideDown { from { transform: translateY(-100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+  .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.3rem; background: linear-gradient(135deg, var(--accent), var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a { font-size: 0.85rem; color: var(--muted); text-decoration: none; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500; transition: color 0.3s; position: relative; }
+  .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 1px; background: var(--cyan); transform: scaleX(0); transition: transform 0.3s; }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-links a:hover::after { transform: scaleX(1); }
+  .hero { min-height: 100vh; display: flex; align-items: center; padding: 120px 60px 80px; position: relative; z-index: 1; max-width: 1400px; margin: 0 auto; }
+  .hero-content { max-width: 780px; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(37,99,235,0.12); border: 1px solid rgba(37,99,235,0.3); border-radius: 100px; padding: 6px 16px; font-size: 0.78rem; color: var(--accent); font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 32px; animation: fadeUp 0.8s 0.2s ease both; }
+  .hero-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--cyan); animation: pulse-dot 2s ease infinite; }
+  @keyframes pulse-dot { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.5); } }
+  .hero h1 { font-family: 'Syne', sans-serif; font-size: clamp(3rem, 6vw, 5.5rem); font-weight: 800; line-height: 1.05; letter-spacing: -2px; margin-bottom: 24px; animation: fadeUp 0.8s 0.3s ease both; }
+  .hero h1 .name-highlight { background: linear-gradient(135deg, #fff 0%, var(--accent) 50%, var(--cyan) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: block; }
+  .hero-role { font-size: 1.1rem; color: var(--muted); font-weight: 300; line-height: 1.7; margin-bottom: 48px; max-width: 560px; animation: fadeUp 0.8s 0.4s ease both; }
+  .hero-role strong { color: var(--text); font-weight: 500; }
+  .hero-stats { display: flex; gap: 48px; margin-bottom: 48px; animation: fadeUp 0.8s 0.5s ease both; }
+  .stat { display: flex; flex-direction: column; }
+  .stat-num { font-family: 'Syne', sans-serif; font-size: 2.5rem; font-weight: 800; background: linear-gradient(135deg, var(--accent), var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1; }
+  .stat-label { font-size: 0.78rem; color: var(--muted); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.06em; }
+  .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; animation: fadeUp 0.8s 0.6s ease both; }
+  .btn-primary { display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(135deg, var(--blue), var(--cyan)); color: #fff; font-size: 0.9rem; font-weight: 600; padding: 14px 32px; border-radius: 8px; text-decoration: none; border: none; cursor: none; transition: all 0.3s ease; box-shadow: 0 0 30px rgba(37,99,235,0.4); font-family: 'DM Sans', sans-serif; }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 50px rgba(37,99,235,0.6); }
+  .btn-secondary { display: inline-flex; align-items: center; gap: 10px; background: transparent; color: var(--text); font-size: 0.9rem; font-weight: 500; padding: 13px 32px; border-radius: 8px; text-decoration: none; border: 1px solid var(--border); transition: all 0.3s ease; font-family: 'DM Sans', sans-serif; cursor: none; }
+  .btn-secondary:hover { border-color: var(--cyan); color: var(--cyan); background: rgba(6,182,212,0.05); }
+  .hero-visual { position: absolute; right: 60px; top: 50%; transform: translateY(-50%); width: 360px; animation: fadeLeft 1s 0.4s ease both; }
+  @keyframes fadeLeft { from { opacity: 0; transform: translateY(-50%) translateX(40px); } to { opacity: 1; transform: translateY(-50%) translateX(0); } }
+  .hero-card { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 28px; position: relative; overflow: hidden; }
+  .hero-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--blue), var(--cyan), var(--gold)); }
+  .profile-header { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
+  .profile-avatar { width: 56px; height: 56px; border-radius: 14px; background: linear-gradient(135deg, var(--blue), var(--cyan)); display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.4rem; color: #fff; flex-shrink: 0; }
+  .profile-info h3 { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; }
+  .profile-info p { font-size: 0.78rem; color: var(--cyan); margin-top: 2px; }
+  .card-skill-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+  .skill-tag { background: rgba(37,99,235,0.12); border: 1px solid rgba(37,99,235,0.25); color: var(--accent); font-size: 0.72rem; padding: 4px 10px; border-radius: 100px; font-weight: 500; }
+  .card-metric { background: rgba(6,182,212,0.06); border: 1px solid rgba(6,182,212,0.15); border-radius: 12px; padding: 14px 16px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
+  .card-metric-label { font-size: 0.78rem; color: var(--muted); }
+  .card-metric-value { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; color: var(--cyan); }
+  .available-badge { margin-top: 16px; display: flex; align-items: center; gap: 8px; font-size: 0.75rem; color: #34d399; font-weight: 500; }
+  .available-badge::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: #34d399; animation: pulse-dot 1.5s ease infinite; flex-shrink: 0; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+  .section-wrap { position: relative; z-index: 1; padding: 100px 60px; max-width: 1400px; margin: 0 auto; }
+  .section-full { position: relative; z-index: 1; padding: 100px 0; background: rgba(255,255,255,0.01); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .section-full-inner { max-width: 1400px; margin: 0 auto; padding: 0 60px; }
+  .section-label { font-size: 0.75rem; color: var(--cyan); font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 12px; display: block; }
+  .section-title { font-family: 'Syne', sans-serif; font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 800; letter-spacing: -1px; margin-bottom: 16px; line-height: 1.1; }
+  .section-sub { color: var(--muted); font-size: 1rem; line-height: 1.7; max-width: 560px; margin-bottom: 64px; }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+  .about-text p { color: var(--muted); line-height: 1.8; margin-bottom: 16px; font-size: 0.95rem; }
+  .about-text p strong { color: var(--text); }
+  .about-tools { margin-top: 32px; }
+  .about-tools h4 { font-family: 'Syne', sans-serif; font-size: 0.85rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; }
+  .tools-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+  .tool-chip { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 8px 14px; font-size: 0.8rem; color: var(--text); font-weight: 500; transition: all 0.3s; }
+  .tool-chip:hover { border-color: var(--cyan); color: var(--cyan); transform: translateY(-2px); }
+  .about-highlights { display: flex; flex-direction: column; gap: 16px; }
+  .highlight-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 24px 28px; transition: all 0.3s ease; position: relative; overflow: hidden; }
+  .highlight-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: linear-gradient(180deg, var(--blue), var(--cyan)); border-radius: 3px 0 0 3px; }
+  .highlight-card:hover { border-color: rgba(99,179,237,0.3); transform: translateX(4px); }
+  .highlight-icon { font-size: 1.5rem; margin-bottom: 10px; }
+  .highlight-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 6px; }
+  .highlight-desc { font-size: 0.83rem; color: var(--muted); line-height: 1.6; }
+  .timeline { position: relative; }
+  .timeline::before { content: ''; position: absolute; left: 20px; top: 0; bottom: 0; width: 1px; background: linear-gradient(180deg, var(--blue), transparent); }
+  .timeline-item { display: grid; grid-template-columns: 60px 1fr; gap: 32px; margin-bottom: 48px; opacity: 0; transform: translateY(20px); transition: all 0.6s ease; }
+  .timeline-item.visible { opacity: 1; transform: translateY(0); }
+  .timeline-dot { width: 40px; height: 40px; border-radius: 12px; background: linear-gradient(135deg, var(--blue), var(--cyan)); display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 0 20px rgba(37,99,235,0.4); font-size: 1rem; }
+  .exp-card { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 32px 36px; transition: all 0.3s; }
+  .exp-card:hover { border-color: rgba(99,179,237,0.3); box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+  .exp-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; flex-wrap: wrap; gap: 8px; }
+  .exp-company { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem; color: var(--accent); }
+  .exp-duration { background: rgba(37,99,235,0.12); border: 1px solid rgba(37,99,235,0.25); color: var(--accent); font-size: 0.75rem; padding: 4px 12px; border-radius: 100px; font-weight: 500; }
+  .exp-role { font-size: 0.9rem; color: var(--cyan); font-weight: 500; margin-bottom: 20px; }
+  .exp-points { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .exp-points li { font-size: 0.875rem; color: var(--muted); line-height: 1.7; padding-left: 20px; position: relative; }
+  .exp-points li::before { content: '▸'; position: absolute; left: 0; color: var(--cyan); font-size: 0.7rem; top: 3px; }
+  .exp-points li strong { color: var(--text); }
+  .exp-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+  .exp-tag { background: rgba(6,182,212,0.08); border: 1px solid rgba(6,182,212,0.2); color: var(--cyan); font-size: 0.72rem; padding: 3px 10px; border-radius: 100px; font-weight: 500; }
+  .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .skill-category { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 28px; opacity: 0; transform: translateY(20px); transition: all 0.5s ease; }
+  .skill-category.visible { opacity: 1; transform: translateY(0); }
+  .skill-category:hover { border-color: rgba(99,179,237,0.3); transform: translateY(-4px); }
+  .skill-cat-icon { font-size: 1.8rem; margin-bottom: 16px; }
+  .skill-cat-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; margin-bottom: 16px; color: var(--text); }
+  .skill-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .skill-list li { font-size: 0.83rem; color: var(--muted); display: flex; align-items: center; gap: 8px; }
+  .skill-list li::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--cyan); flex-shrink: 0; }
+  .achievements-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .achievement-card { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 32px 28px; text-align: center; opacity: 0; transform: translateY(20px); transition: all 0.5s ease; }
+  .achievement-card.visible { opacity: 1; transform: translateY(0); }
+  .achievement-card:hover { border-color: rgba(245,158,11,0.3); transform: translateY(-6px); box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+  .achievement-num { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 3rem; line-height: 1; background: linear-gradient(135deg, var(--gold), #fbbf24); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 8px; }
+  .achievement-label { font-size: 0.85rem; color: var(--text); font-weight: 500; margin-bottom: 6px; }
+  .achievement-sub { font-size: 0.75rem; color: var(--muted); }
+  .certs-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .cert-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 24px 28px; display: flex; align-items: center; gap: 20px; opacity: 0; transform: translateX(-20px); transition: all 0.5s ease; }
+  .cert-card.visible { opacity: 1; transform: translateX(0); }
+  .cert-card:hover { border-color: rgba(99,179,237,0.3); transform: translateX(4px); }
+  .cert-logo { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; }
+  .cert-logo.sailpoint { background: linear-gradient(135deg, #1e3a8a, #2563eb); }
+  .cert-logo.microsoft { background: linear-gradient(135deg, #0078d4, #50e6ff); }
+  .cert-logo.nasscom { background: linear-gradient(135deg, #dc2626, #f87171); }
+  .cert-info h4 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.88rem; margin-bottom: 4px; }
+  .cert-info p { font-size: 0.75rem; color: var(--cyan); }
+  .cert-date { font-size: 0.72rem; color: var(--muted); margin-top: 4px; }
+  .cert-status { margin-left: auto; flex-shrink: 0; font-size: 0.7rem; padding: 4px 10px; border-radius: 100px; font-weight: 600; }
+  .cert-status.done { background: rgba(52,211,153,0.12); color: #34d399; border: 1px solid rgba(52,211,153,0.25); }
+  .cert-status.progress { background: rgba(245,158,11,0.12); color: var(--gold); border: 1px solid rgba(245,158,11,0.25); }
+  .contact-section { background: var(--card); border: 1px solid var(--border); border-radius: 32px; padding: 80px; text-align: center; position: relative; overflow: hidden; margin: 0 60px 100px; z-index: 1; }
+  .contact-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(37,99,235,0.08) 0%, transparent 70%); }
+  .contact-links { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1; }
+  .contact-link { display: inline-flex; align-items: center; gap: 10px; background: rgba(37,99,235,0.1); border: 1px solid rgba(37,99,235,0.25); color: var(--text); padding: 14px 24px; border-radius: 12px; text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: all 0.3s; cursor: none; }
+  .contact-link:hover { background: rgba(37,99,235,0.2); border-color: var(--cyan); color: var(--cyan); transform: translateY(-2px); }
+  footer { text-align: center; padding: 32px; position: relative; z-index: 1; font-size: 0.78rem; color: var(--muted); border-top: 1px solid var(--border); }
+  .reveal { opacity: 0; transform: translateY(30px); transition: all 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  @media (max-width: 1100px) { .hero-visual { display: none; } .about-grid { grid-template-columns: 1fr; } .skills-grid { grid-template-columns: repeat(2, 1fr); } .achievements-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 768px) { nav { padding: 16px 24px; } .nav-links { display: none; } .hero { padding: 100px 24px 60px; } .section-wrap, .section-full-inner { padding: 60px 24px; } .hero-stats { gap: 24px; } .skills-grid, .achievements-grid, .certs-grid { grid-template-columns: 1fr; } .contact-section { padding: 40px 24px; margin: 0 24px 60px; } }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+
+<nav>
+  <div class="nav-logo">GP.</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div style="position:relative;z-index:1;">
+<div class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">Open to New Opportunities</div>
+    <h1>IAM Business<br><span class="name-highlight">Analyst</span></h1>
+    <p class="hero-role">Hi, I'm <strong>Ganesh Pandit</strong> — a results-driven IAM BA with <strong>14+ years</strong> at BNY Mellon. I bridge business needs with <strong>SailPoint IIQ</strong>, identity governance, and Agile delivery.</p>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-num">14+</span><span class="stat-label">Years Exp.</span></div>
+      <div class="stat"><span class="stat-num">150+</span><span class="stat-label">Apps Migrated</span></div>
+      <div class="stat"><span class="stat-num">40%</span><span class="stat-label">Manual Effort ↓</span></div>
+      <div class="stat"><span class="stat-num">30%</span><span class="stat-label">Orphan Accts ↓</span></div>
+    </div>
+    <div class="hero-ctas">
+      <a href="mailto:ganesh.pandit1415@gmail.com" class="btn-primary">📧 Hire Me</a>
+      <a href="https://www.linkedin.com/in/ganesh-pandit" class="btn-secondary" target="_blank">🔗 LinkedIn</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-card">
+      <div class="profile-header">
+        <div class="profile-avatar">GP</div>
+        <div class="profile-info"><h3>Ganesh Pandit</h3><p>IAM Business Analyst</p></div>
+      </div>
+      <div class="card-skill-tags">
+        <span class="skill-tag">SailPoint IIQ</span><span class="skill-tag">Azure AD</span><span class="skill-tag">SOX</span><span class="skill-tag">Agile</span><span class="skill-tag">RBAC</span><span class="skill-tag">JIRA</span>
+      </div>
+      <div class="card-metric"><span class="card-metric-label">Applications Migrated</span><span class="card-metric-value">150+</span></div>
+      <div class="card-metric"><span class="card-metric-label">Orphan Accounts Reduced</span><span class="card-metric-value">30%</span></div>
+      <div class="card-metric"><span class="card-metric-label">Manual Effort Saved</span><span class="card-metric-value">40%</span></div>
+      <div class="available-badge">Available for Senior BA Roles · Pune</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ABOUT -->
+<div class="section-wrap" id="about">
+  <span class="section-label reveal">About Me</span>
+  <h2 class="section-title reveal">Identity Security Expert<br>with a Business Mindset</h2>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p>With over <strong>14 years of deep expertise</strong> in Identity and Access Management at BNY Mellon, I specialize in translating complex security requirements into actionable business solutions.</p>
+      <p>I have led the <strong>global migration of 150+ enterprise applications</strong> to SailPoint Identity IQ, designed RBAC frameworks, automated JML processes, and ensured SOX compliance across critical financial systems.</p>
+      <p>My strength lies in being the <strong>bridge between business stakeholders and technical teams</strong> — delivering Agile projects on time and continuously improving IAM processes.</p>
+      <div class="about-tools">
+        <h4>Tools & Technologies</h4>
+        <div class="tools-grid">
+          <span class="tool-chip">SailPoint IIQ</span><span class="tool-chip">Saviynt</span><span class="tool-chip">Azure AD</span><span class="tool-chip">Active Directory</span><span class="tool-chip">ServiceNow</span><span class="tool-chip">JIRA</span><span class="tool-chip">Confluence</span><span class="tool-chip">SQL</span><span class="tool-chip">REST APIs</span><span class="tool-chip">Power BI</span><span class="tool-chip">MS Visio</span><span class="tool-chip">MS Excel</span>
+        </div>
+      </div>
+    </div>
+    <div class="about-highlights">
+      <div class="highlight-card reveal"><div class="highlight-icon">🔐</div><div class="highlight-title">IAM & Identity Governance</div><div class="highlight-desc">Deep expertise in SailPoint IIQ, Saviynt, RBAC design, JML lifecycle, access certification, and identity provisioning at enterprise scale.</div></div>
+      <div class="highlight-card reveal"><div class="highlight-icon">📋</div><div class="highlight-title">Business Analysis</div><div class="highlight-desc">Skilled in requirement elicitation, BRD/FRD documentation, gap analysis, stakeholder management, UAT coordination, and Agile delivery.</div></div>
+      <div class="highlight-card reveal"><div class="highlight-icon">✅</div><div class="highlight-title">Compliance & Audit</div><div class="highlight-desc">Hands-on experience supporting SOX audits, access attestation campaigns, and regulatory compliance across global financial institutions.</div></div>
+      <div class="highlight-card reveal"><div class="highlight-icon">🤖</div><div class="highlight-title">AI & Cloud Ready</div><div class="highlight-desc">Certified in AI concepts (Microsoft Learn) and cloud fundamentals. Actively upskilling to bring AI-driven insights into IAM workflows.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- EXPERIENCE -->
+<div class="section-full" id="experience">
+<div class="section-full-inner">
+  <span class="section-label reveal">Experience</span>
+  <h2 class="section-title reveal">14 Years. One Company.<br>Endless Impact.</h2>
+  <p class="section-sub reveal">Dedicated career at BNY Mellon — from Information Security Analyst to IAM Business Analyst, driving identity governance at a global financial institution.</p>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-dot">🔷</div>
+      <div class="exp-card">
+        <div class="exp-header">
+          <div><div class="exp-company">BNY Mellon Technology International Pvt. Ltd.</div><div class="exp-role">IAM Business Analyst · Pune</div></div>
+          <span class="exp-duration">Jun 2018 – Present</span>
+        </div>
+        <ul class="exp-points">
+          <li>Primary liaison between stakeholders and IAM engineering team for <strong>SailPoint IIQ implementation across 150+ enterprise applications</strong></li>
+          <li>Led access review campaigns, <strong>reducing orphan accounts by 30%</strong> through process redesign and policy improvements</li>
+          <li>Gathered and documented BRD/FRD for RBAC and access provisioning workflows</li>
+          <li>Coordinated SOX audits, access certification, and attestation with compliance teams</li>
+          <li>Maintained product backlog, authored user stories, and facilitated Agile scrums via JIRA & Confluence</li>
+          <li>Collaborated with cross-functional teams (developers, architects, risk leads) for end-to-end IAM delivery</li>
+        </ul>
+        <div class="exp-tags"><span class="exp-tag">SailPoint IIQ</span><span class="exp-tag">RBAC</span><span class="exp-tag">BRD/FRD</span><span class="exp-tag">SOX</span><span class="exp-tag">Agile</span><span class="exp-tag">JIRA</span><span class="exp-tag">UAT</span></div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot">🔹</div>
+      <div class="exp-card">
+        <div class="exp-header">
+          <div><div class="exp-company">BNY Mellon Technology International Pvt. Ltd.</div><div class="exp-role">Information Security Analyst · Pune</div></div>
+          <span class="exp-duration">Mar 2011 – Mar 2018</span>
+        </div>
+        <ul class="exp-points">
+          <li>Managed user provisioning/de-provisioning across multiple domains via Active Directory and SailPoint</li>
+          <li><strong>Automated JML processes using RPA, reducing manual effort by 40%</strong></li>
+          <li>Administered user IDs across Distributed, Mainframe, and Web applications</li>
+          <li>Led workshops on Saviynt, JIRA, and Identity Governance platforms for team upskilling</li>
+          <li>Acted simultaneously as <strong>BA, Functional SME, and Tester</strong> across multiple concurrent projects</li>
+        </ul>
+        <div class="exp-tags"><span class="exp-tag">Active Directory</span><span class="exp-tag">SailPoint</span><span class="exp-tag">Saviynt</span><span class="exp-tag">RPA</span><span class="exp-tag">ServiceNow</span><span class="exp-tag">UNIX Admin</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- KEY PROJECT METRICS -->
+<div class="section-wrap">
+  <span class="section-label reveal">Key Project</span>
+  <h2 class="section-title reveal">IAM Application Migration to SailPoint IIQ</h2>
+  <div class="achievements-grid">
+    <div class="achievement-card"><div class="achievement-num">150+</div><div class="achievement-label">Enterprise Apps Migrated</div><div class="achievement-sub">From Access Hub 1.0 → 2.0 on SailPoint IIQ</div></div>
+    <div class="achievement-card"><div class="achievement-num">40%</div><div class="achievement-label">Manual Effort Reduced</div><div class="achievement-sub">Via automated JML process implementation</div></div>
+    <div class="achievement-card"><div class="achievement-num">30%</div><div class="achievement-label">Orphan Accounts Eliminated</div><div class="achievement-sub">Through access review & policy redesign</div></div>
+  </div>
+</div>
+
+<!-- SKILLS -->
+<div class="section-full" id="skills">
+<div class="section-full-inner">
+  <span class="section-label reveal">Expertise</span>
+  <h2 class="section-title reveal">Core Skills</h2>
+  <p class="section-sub reveal">A comprehensive toolkit built over 14 years of enterprise IAM delivery.</p>
+  <div class="skills-grid">
+    <div class="skill-category"><div class="skill-cat-icon">🔐</div><div class="skill-cat-title">IAM & Identity</div><ul class="skill-list"><li>SailPoint Identity IQ</li><li>Saviynt</li><li>Azure Active Directory</li><li>Active Directory</li><li>RBAC / ABAC Design</li><li>JML Process Automation</li><li>Access Certification</li></ul></div>
+    <div class="skill-category"><div class="skill-cat-icon">📋</div><div class="skill-cat-title">Business Analysis</div><ul class="skill-list"><li>Requirement Gathering (BRD/FRD)</li><li>Stakeholder Management</li><li>Gap Analysis</li><li>Process Mapping</li><li>UAT Coordination</li><li>User Story Writing</li><li>Product Backlog Management</li></ul></div>
+    <div class="skill-category"><div class="skill-cat-icon">⚙️</div><div class="skill-cat-title">Tools & Tech</div><ul class="skill-list"><li>JIRA & Confluence</li><li>ServiceNow</li><li>SQL & REST APIs</li><li>Power BI</li><li>MS Visio</li><li>Java / JDBC</li><li>Web Services (SOAP/REST)</li></ul></div>
+    <div class="skill-category"><div class="skill-cat-icon">🚀</div><div class="skill-cat-title">Methodologies</div><ul class="skill-list"><li>Agile / Scrum</li><li>SDLC & Waterfall</li><li>Sprint Planning</li><li>Daily Stand-ups</li><li>Retrospectives</li><li>Backlog Grooming</li></ul></div>
+    <div class="skill-category"><div class="skill-cat-icon">📊</div><div class="skill-cat-title">Compliance & Audit</div><ul class="skill-list"><li>SOX Compliance</li><li>Access Attestation</li><li>Audit Trail Management</li><li>Risk Assessment</li><li>Policy Documentation</li><li>Regulatory Reporting</li></ul></div>
+    <div class="skill-category"><div class="skill-cat-icon">🤖</div><div class="skill-cat-title">Emerging Tech</div><ul class="skill-list"><li>AI Concepts (Microsoft Learn)</li><li>Cloud Service Types (Azure)</li><li>RPA – Process Automation</li><li>API Integration</li><li>Identity Security Cloud</li><li>Yuva AI (NASSCOM)</li></ul></div>
+  </div>
+</div>
+</div>
+
+<!-- CERTIFICATIONS -->
+<div class="section-wrap" id="certifications">
+  <span class="section-label reveal">Learning</span>
+  <h2 class="section-title reveal">Certifications</h2>
+  <p class="section-sub reveal">Continuously upskilling across IAM, cloud, and AI domains.</p>
+  <div class="certs-grid">
+    <div class="cert-card"><div class="cert-logo sailpoint">⛵</div><div class="cert-info"><h4>IdentityIQ Introduction</h4><p>SailPoint Identity University</p><div class="cert-date">Feb 2026</div></div><span class="cert-status done">✓ Done</span></div>
+    <div class="cert-card"><div class="cert-logo sailpoint">⛵</div><div class="cert-info"><h4>Identity Security Cloud: App Onboarding Discovery</h4><p>SailPoint Identity University</p><div class="cert-date">Sept 2024</div></div><span class="cert-status done">✓ Done</span></div>
+    <div class="cert-card"><div class="cert-logo microsoft">☁️</div><div class="cert-info"><h4>Introduction to AI Concepts</h4><p>Microsoft Learn</p><div class="cert-date">Feb 2026</div></div><span class="cert-status done">✓ Done</span></div>
+    <div class="cert-card"><div class="cert-logo microsoft">☁️</div><div class="cert-info"><h4>Describe Cloud Service Types</h4><p>Microsoft Learn</p><div class="cert-date">Mar 2026</div></div><span class="cert-status done">✓ Done</span></div>
+    <div class="cert-card"><div class="cert-logo nasscom">🇮🇳</div><div class="cert-info"><h4>Yuva AI for All</h4><p>NASSCOM FutureSkills Prime / IndiaAI</p><div class="cert-date">Feb 2026</div></div><span class="cert-status done">✓ Done</span></div>
+    <div class="cert-card"><div class="cert-logo sailpoint">⛵</div><div class="cert-info"><h4>SailPoint IdentityNow Certified Implementation Engineer</h4><p>SailPoint</p><div class="cert-date">In Progress</div></div><span class="cert-status progress">⏳ Active</span></div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div style="position:relative;z-index:1;">
+<div class="contact-section" id="contact">
+  <span class="section-label" style="display:block;margin-bottom:12px;">Let's Connect</span>
+  <h2 class="section-title" style="margin-bottom:16px;">Ready to Bring IAM<br>Expertise to Your Team?</h2>
+  <p class="section-sub" style="margin: 0 auto 48px; text-align:center;">14+ years of identity governance, business analysis & Agile delivery. Based in Pune, open to senior IAM BA roles.</p>
+  <div class="contact-links">
+    <a href="mailto:ganesh.pandit1415@gmail.com" class="contact-link">📧 ganesh.pandit1415@gmail.com</a>
+    <a href="tel:9823482916" class="contact-link">📞 9823482916</a>
+    <a href="https://www.linkedin.com/in/ganesh-pandit" class="contact-link" target="_blank">🔗 LinkedIn</a>
+    <a href="#" class="contact-link">📍 Pune, Maharashtra</a>
+  </div>
+</div>
+</div>
+
+<footer><p>© 2026 Ganesh Pandit · IAM Business Analyst · Pune, India</p></footer>
+
+<script>
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
+  function animCursor(){cursor.style.left=mx-6+'px';cursor.style.top=my-6+'px';rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;ring.style.left=rx-18+'px';ring.style.top=ry-18+'px';requestAnimationFrame(animCursor);}
+  animCursor();
+
+  const observer = new IntersectionObserver(entries=>{
+    entries.forEach((entry,i)=>{if(entry.isIntersecting){setTimeout(()=>entry.target.classList.add('visible'),i*80);}});
+  },{threshold:0.1});
+  document.querySelectorAll('.reveal,.timeline-item,.skill-category,.achievement-card,.cert-card').forEach(el=>observer.observe(el));
+
+  const statsObs = new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.querySelectorAll('.achievement-num').forEach(num=>{
+          const t=num.textContent;
+          let target=0,suffix='';
+          if(t.includes('150')){target=150;suffix='+';}
+          else if(t.includes('40')){target=40;suffix='%';}
+          else if(t.includes('30')){target=30;suffix='%';}
+          let s=0,step=target/120;
+          const timer=setInterval(()=>{s+=step;if(s>=target){s=target;clearInterval(timer);}num.textContent=Math.floor(s)+suffix;},16);
+        });
+        statsObs.unobserve(entry.target);
+      }
+    });
+  },{threshold:0.5});
+  const ag=document.querySelector('.achievements-grid');if(ag)statsObs.observe(ag);
+</script>
+</body>
+</html>
